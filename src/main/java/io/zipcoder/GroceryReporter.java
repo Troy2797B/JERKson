@@ -11,6 +11,7 @@ public class GroceryReporter {
 
     @Override
     public String toString() {
+        System.out.println(originalFileText);
         return null;
     }
 }

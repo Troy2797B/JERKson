@@ -17,7 +17,7 @@ public class ParseSingleItemTest {
 
         // when
         Item actual = itemParser.parseSingleItem(valueToParse);
-
+        System.out.println(actual);
         // then
         assertEquals(expected, actual);
     }

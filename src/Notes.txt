@@ -1,0 +1,83 @@
+src/main/java/resources contains an encrypted shopping list that is in the language JerkSON
+
+JerkSON ============================================== | JSON =======================================================
+
+
+* KEY and VALUE are separated by  (:, @, ^, *, %) ==== | * KEY and VALUE separated by (:)
+* KEY and VALUE PAIRS are separated by ; ============= | * KEY and VALUE pairs separated by (,)
+
+JerkSON Example:                                         JSON example
+ NaMe:egGS;prICE@3.23;typE^foOd;eXPiRAtIOn%1/24/2016## |  {
+                                                            "name" : "Milk",
+                                                            "price" : 3.25,
+                                                            "type" : "food",
+                                                            "expiration" : "01/24/2016"
+                                                          }
+
+Other things to note:
+*Report on how many exceptions were seen while parsing.
+*Write tests for each "sub stage" of the code
+*For each grocery item, build a text output of High/Low and Average value for things on the list.
+*Match, MatchBuilder, and MatchGroup are built in classes in java, generally these seem to look for patterns
+*Might have to look into Pattern Class
+*In ItemParser, if you don't find all elements of an Item (String name, Double price, String type, String expiration)
+you need to throw a Custom Exception.
+*remember you may need an extra slash (ex: \\w+ rather than \w+)
+
+=====================CLASS STUFF========================
+
+CLASSES TO MODIFY (DEFINITELY MODIFY):
+Class ItemParser is obv where you parse and convert and write your regex (might have to throw custom exception)
+        *TEST Class ParseItemListTest SAYS: Put in a JerkSON string and you get the values of the
+        item constructor
+
+***NOT SURE*** Class Match is likely taking values you set in ItemParser, and it is formatting them to JSON
+
+Class Grocery Reporter reads the whole jerksonFile and uses Item parser to make it look right
+        *TEST SAYS: Input is the jerkSON file and output is the expectedOutput file
+
+
+
+
+CLASSES TO OBSERVE (MAYBE MODIFY):
+Class Match *CAN MODIFY*
+        *This is an object that is made up of the string of the word, the number associated with this
+        (i think. also it seems like referring to an array of arrays.),
+        the index that it starts in the string, and the index the word ends in the string
+
+Class MatchBuilder *CAN MODIFY*
+        *Seems like a setter class to just make matches
+
+Class MatchGroup *CAN MODIFY*
+        *TEST SAYS: You should be able to take a word and use the MatchGroup class's get() method
+        to get the actual word
+        *SEEMS LIKE all the properties of this file decide what word is a word to match using the
+
+*DO NOT MODIFY* Class Item
+        *This class uses an arraylist of matches.
+        *You can get() the list,
+        *You can iterate through the list with the iterator() method
+        *You can convert the list toString()
+
+
+
+
+
+CLASSES THAT ARE JUST THERE (DO NOT MODIFY):
+Class FileReader uses a stream to read the file.
+        *readFile(fileName) lets you read files ofc
+
+Class Item checks the values of its properties are what they need to be I believe
+
+Class ItemParseException is just an Exception class you can utilize to throw a custom exception.
+
+
+Steps in process:
+In general
+1. Item Parser - format the file into an arraylist of items
+2. Grocery Reporter - format the items parsed and take the price range and do that, count how many times an item popped up in array of items
+
+
+LAST STEP: Calling Grocery Reporter to report the expected output
+
+
